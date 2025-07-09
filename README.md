@@ -6,7 +6,7 @@
 
 ---
 
-## 1 개발 환경 세팅
+## 개발 환경 세팅
 
 ### 🔸 Anaconda(Conda) 설치
 
@@ -22,10 +22,11 @@
 
 ### 🔸 Conda 가상환경 생성
 
-```bash
+```
+bash
 conda create -n mini python=3.10
 conda activate mini
-
+```
 ---
 ## 설치 명령어
 
@@ -35,7 +36,8 @@ conda activate mini
 
 ---
 ## 실행 명령어
-strealit 실행
+
+### strealit 실행
 - streamlit run main_streamlit.py
-gradio 실행
+### gradio 실행
 - python main_gradio.py
