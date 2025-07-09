@@ -1,0 +1,37 @@
+{
+    "서울": [
+        {"name": "YTN서울타워", "addr": "서울 용산구 용산동2가 산 1-3", "url": "https://place.map.kakao.com/1913983226"},
+        {"name": "경복궁", "addr": "서울 종로구 사직로 161 1층", "url": "https://place.map.kakao.com/18619553"},
+        {"name": "북촌한옥마을", "addr": "서울 종로구 북촌로 53", "url": "https://place.map.kakao.com/781129546"},
+        {"name": "롯데월드타워", "addr": "서울 송파구 올림픽로 300", "url": "https://place.map.kakao.com/23444676"},
+        {"name": "이태원거리", "addr": "서울 용산구 이태원동 119-23", "url": "https://place.map.kakao.com/10753713"},
+        {"name": "남산케이블카", "addr": "서울 중구 소파로 83", "url": "https://place.map.kakao.com/8233285"},
+        {"name": "별마당도서관 스타필드코엑스몰", "addr": "서울 강남구 삼성동 159-9 지하1층-1층", "url": "https://place.map.kakao.com/2104663194"},
+        {"name": "청계천", "addr": "서울 종로구 서린동 148", "url": "https://place.map.kakao.com/10849847"},
+        {"name": "동대문디자인플라자", "addr": "서울 중구 을지로", "url": "https://place.map.kakao.com/25022134"}
+    ],
+    "제주도": [
+        {"name": "9.81파크", "addr": "제주특별자치도 제주시 애월읍 천덕로 880-24", "url": "https://www.981park.com/"},
+        {"name": "아쿠아플라넷 제주", "addr": "제주특별자치도 서귀포시 성산읍 섭지코지로 95", "url": "https://www.aquaplanet.co.kr/jeju/index.do"},
+        {"name": "스누피가든", "addr": "제주특별자치도 제주시 구좌읍 금백조로 930", "url": "https://www.snoopygarden.com/"},
+        {"name": "아르떼뮤지엄 제주", "addr": "제주특별자치도 제주시 애월읍 어림비로 478", "url": "https://kr.artemuseum.com/"},
+        {"name": "에코랜드", "addr": "제주특별자치도 제주시 조천읍 번영로 1278-169", "url": "http://theme.ecolandjeju.co.kr/G5/"},
+        {"name": "헬로키티아일랜드", "addr": "제주특별자치도 서귀포시 안덕면 한창로 340 2층", "url": "https://www.hellokittyisland.co.kr/"},
+        {"name": "제주난타", "addr": "제주특별자치도 제주시 선돌목동길 56-26", "url": "https://place.map.kakao.com/9445759"},
+        {"name": "서귀포잠수함", "addr": "제주특별자치도 서귀포시 남성중로 40", "url": "https://www.submarine.co.kr/submarine/egovSubmarineList.do"},
+        {"name": "성산 일출봉", "addr": "제주특별자치도 서귀포시 성산읍 성산리 78", "url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500349"},
+        {"name": "함덕해수욕장", "addr": "제주특별자치도 제주시 조천읍 조함해안로 525", "url": "https://www.visitjeju.net/kr/detail/view?contentsid=CONT_000000000500693"}
+    ],
+    "부산": [
+        {"name": "광안리 해수욕장", "addr": "부산 수영구 광안해변로 219", "url": "https://place.map.kakao.com/8202423"},
+        {"name": "감천문화마을", "addr": "감천문화마을", "url": "https://place.map.kakao.com/21362956"},
+        {"name": "해운대 블루라인파크", "addr": "부산 해운대구 달맞이길62번길 13", "url": "https://place.map.kakao.com/188403018"},
+        {"name": "송도 배이스테이션(해상케이블카)", "addr": "부산 서구 송도해변로 171 1,4층", "url": "https://place.map.kakao.com/1266228191"},
+        {"name": "해운대 해수욕장", "addr": "해운대 해수욕장", "url": "https://place.map.kakao.com/7913306"},
+        {"name": "국제시장", "addr": "부산 중구 신창동4가 56-4", "url": "https://place.map.kakao.com/20543715"},
+        {"name": "흰여울문화마을", "addr": "부산 영도구 영선동4가 1044-6", "url": "https://place.map.kakao.com/22875776"},
+        {"name": "오륙도 스카이워크", "addr": "부산 남구 오륙도로 137", "url": "https://place.map.kakao.com/22250028"},
+        {"name": "밀락더마켓", "addr": "부산 수영구 민락수변로17번길 56", "url": "https://place.map.kakao.com/852075435"},
+        {"name": "스파랜드 신세계백화점 센터시티점", "addr": "부산 해운대구 센텀남대로 35 1-2층", "url": "https://place.map.kakao.com/12016287"}
+    ]
+}
