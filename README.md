@@ -30,5 +30,12 @@ conda activate mini
 ## 설치 명령어
 
 ### gradio, streamlit 설치
+- pip install gradio streamlit requests python-dotenv
 
-pip install gradio streamlit requests python-dotenv
+
+---
+## 실행 명령어
+strealit 실행
+- streamlit run main_streamlit.py
+gradio 실행
+- python main_gradio.py
