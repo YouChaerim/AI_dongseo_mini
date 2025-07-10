@@ -2,6 +2,7 @@ import random
 import gradio as gr
 from logic import REGIONS, CATEGORIES, show_result
 from food_cafe_prompts import STEP1_QUESTIONS, food_cafe_chatbot
+from schedule_chatbot import schedule_chatbot_fn as schedule_chatbot, START_MSG, REGION_MSG
 
 def run_app():
     with gr.Blocks(theme=gr.themes.Soft()) as demo:
@@ -16,7 +17,7 @@ def run_app():
                 txt = gr.Textbox(show_label=False, placeholder="메시지를 입력하세요...", scale=4, visible=False)
                 send_btn = gr.Button("전송", scale=1, visible=False)
         # 챗봇 상태 State(중요)
-        chat_state = gr.State(value={"step": 1, "region": None, "food_type": None})
+        chat_state = gr.State(value={"step": 1, "region": None, "food_type": None}) # 일정챗봇은 step:0
 
         # 하단 고정 버튼
         with gr.Column(elem_id="footer_fixed"):
@@ -27,37 +28,41 @@ def run_app():
 
         category_box = gr.Textbox(value="", visible=False, interactive=False, show_label=False)
 
-        # 카테고리 버튼 클릭시 로직 수정!
+        # --- 카테고리 버튼 클릭 시 처리 ---
         def set_category(idx):
             btn_states = [gr.update(variant="primary" if i == idx else "secondary") for i in range(len(CATEGORIES))]
-            # 맛집 및 카페: 챗봇 show + 질문(초기화)
-            if CATEGORIES[idx] == "맛집 및 카페":
+            cat = CATEGORIES[idx]
+            if cat == "맛집 및 카페":
                 first_msg = {"role": "assistant", "content": random.choice(STEP1_QUESTIONS)}
                 return (
                     btn_states +
-                    [CATEGORIES[idx],                # category_box
-                        gr.update(visible=False),        # region_btn_row
-                        gr.update(visible=True),         # chatbot_col
-                        gr.update(visible=False, value=""), # result_html
-                        gr.update(visible=True, value=[first_msg]), # chatbot: 첫 질문 출력
-                        gr.update(visible=True),         # chat_input_row
-                        gr.update(visible=True),         # txt
-                        gr.update(visible=True),         # send_btn
-                        {"step": 1, "region": None, "food_type": None}  # chat_state(초기화)
-                    ]
+                    [cat, gr.update(visible=False), gr.update(visible=True), gr.update(visible=False, value=""),
+                        gr.update(visible=True, value=[first_msg]),
+                        gr.update(visible=True), gr.update(visible=True), gr.update(visible=True),
+                        {"step": 1, "region": None, "food_type": None}]
                 )
-            # 숙소/관광지: 기존대로
-            elif CATEGORIES[idx] in ["인기 숙소", "관광지"]:
+            elif cat in ["인기 숙소", "관광지"]:
                 return (
                     btn_states +
-                    [CATEGORIES[idx], gr.update(visible=True), gr.update(visible=False), gr.update(visible=False, value=""),
+                    [cat, gr.update(visible=True), gr.update(visible=False), gr.update(visible=False, value=""),
                         gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), gr.update(visible=False), {"step": 1, "region": None, "food_type": None}]
                 )
-            # 일정 등: 챗봇만 열기(원하면)
+            elif cat == "일정":
+                first_msgs = [
+                    {"role": "assistant", "content": START_MSG},
+                    {"role": "assistant", "content": REGION_MSG}
+                ]
+                return (
+                    btn_states +
+                    [cat, gr.update(visible=False), gr.update(visible=True), gr.update(visible=False, value=""),
+                    gr.update(visible=True, value=first_msgs),
+                    gr.update(visible=True), gr.update(visible=True), gr.update(visible=True),
+                    {"step": 1, "region": None, "mbti": None, "history": []}]
+                )
             else:
                 return (
                     btn_states +
-                    [CATEGORIES[idx], gr.update(visible=False), gr.update(visible=True), gr.update(visible=False, value=""),
+                    [cat, gr.update(visible=False), gr.update(visible=True), gr.update(visible=False, value=""),
                         gr.update(visible=True, value=[]), gr.update(visible=True), gr.update(visible=True), gr.update(visible=True), {"step": 1, "region": None, "food_type": None}]
                 )
 
@@ -89,15 +94,23 @@ def run_app():
                 outputs=result_html
             )
 
-        # **챗봇 전송(맛집 및 카페)**
+        # ---- 핵심! send_chat 함수 하나만 등록! ----
+        def send_chat(txt_val, chat_val, state_val, category_val):
+            if category_val == "맛집 및 카페":
+                return food_cafe_chatbot(txt_val, chat_val, state_val)
+            elif category_val == "일정":
+                return schedule_chatbot(txt_val, chat_val, state_val)
+            else:
+                return "", chat_val, state_val
+
         send_btn.click(
-            food_cafe_chatbot,
-            inputs=[txt, chatbot, chat_state],
+            send_chat,
+            inputs=[txt, chatbot, chat_state, category_box],
             outputs=[txt, chatbot, chat_state]
         )
         txt.submit(
-            food_cafe_chatbot,
-            inputs=[txt, chatbot, chat_state],
+            send_chat,
+            inputs=[txt, chatbot, chat_state, category_box],
             outputs=[txt, chatbot, chat_state]
         )
 

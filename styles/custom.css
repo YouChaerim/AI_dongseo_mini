@@ -1,65 +1,68 @@
-html, body, .gradio-container {
-    background: #fff !important;
-    color: #111 !important;   /* 폰트 색도 어둡게 (선택) */
+html,
+body,
+.gradio-container {
+  background: #fff !important;
+  color: #111 !important; /* 폰트 색도 어둡게 (선택) */
 }
 #footer_fixed {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    width: 100vw;
-    max-width: 900px;
-    background: #fcfcfcF7;
-    z-index: 99999;
-    padding-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  width: 100vw;
+  max-width: 900px;
+  background: #fcfcfcf7;
+  z-index: 99999;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 #region_btn_row {
-    flex-wrap: nowrap !important;
-    overflow-x: auto !important;
-    gap: 24px !important;
-    scrollbar-width: thin;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    justify-content: center;
-    width: 100%;
-    background: transparent;
-    background: #fcfcfcF7;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  gap: 24px !important;
+  scrollbar-width: thin;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
+  background: transparent;
+  background: #fcfcfcf7;
 }
 #cat_row {
-    justify-content: center;
-    width: 100%;
-    gap: 24px !important;
-    background: #fcfcfcF7;
+  justify-content: center;
+  width: 100%;
+  gap: 24px !important;
+  background: #fcfcfcf7;
 }
-#main_chatbot, #chatbot_col {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px;
-    width: 100%;
-    background: #fcfcfcF7;
+#main_chatbot,
+#chatbot_col {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  width: 100%;
+  background: #fcfcfcf7;
 }
 #chatbot_col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 80px;
-    margin-bottom: 40px;
-    background: #fcfcfcF7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
+  margin-bottom: 40px;
+  background: #fcfcfcf7;
 }
 #result_html {
-    height: 540px;
-    max-height: 62vh;
-    overflow-y: auto;
-    background: #f9f9f9;
-    border-radius: 16px;
-    padding: 10px;
-    border: 1.5px solid #FFD60022;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #fcfcfcF7;
-    max-width: 700px;
+  height: 540px;
+  max-height: 62vh;
+  overflow-y: auto;
+  background: #f9f9f9;
+  border-radius: 16px;
+  padding: 10px;
+  border: 1.5px solid #ffd60022;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fcfcfcf7;
+  max-width: 700px;
 }

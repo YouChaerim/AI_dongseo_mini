@@ -1,38 +1,218 @@
 {
-    "서울": [
-        {"name": "코리아나호텔", "addr": "서울시 중구 세종대로 135 (태평로1가)", "phone": "02-2171-7842,7845～6", "url": "https://www.koreanahotel.com/"},
-        {"name": "JK블라썸호텔", "addr": "서울특별시 강서구 양천로 65길 41-22", "phone": "02-2138-0051", "url": "http://www.jkblossom.co.kr/"},
-        {"name": "페어필드 바이 메리어트 서울", "addr": "서울 영등포구 경인로 870", "phone": "02-2108-9000", "url": "https://www.marriott.com/en-us/hotels/selfi-fairfield-seoul/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0"},
-        {"name": "롯데시티호텔 구로", "addr": "서울특별시 중구 을지로 30", "phone": "+02-771-1000", "url": "https://www.lottehotel.com/guro-city/ko"},
-        {"name": "나인트리 바이 파르나스 서울 인사동", "addr": "서울특별시 종로구 인사동길 49", "phone": "02-6917-3099", "url": "https://www.ninetreehotels.com/nth3/"},
-        {"name": "라마다 서울 신도림 호텔", "addr": "서울 구로구 신도림동 427-3", "phone": "02-2162-2000", "url": "https://www.wyndhamhotels.com/ko-kr/ramada/seoul-south-korea/ramada-seoul-sindorim-hotel/overview?brand_id=RA&checkInDate=7/9/2025&checkOutDate=7/10/2025&useWRPoints=false&children=0&adults=1&rooms=1&loc=ChIJg2mkkP6jfDURG-CKQsLK7uA&sessionId=1752029489"},
-        {"name": "이비스 스타일 앰배서더 서울 용산", "addr": "서울 용산구 청파로20길 95", "phone": "02-2223-7713", "url": "https://www.seouldragoncity.com/web/kr/"},
-        {"name": "베르누이 호텔", "addr": "서울 구로구 경인로 229", "phone": "0507-1496-9001", "url": "https://www.bernoui.com/"},
-        {"name": "더코노셔 레지던스", "addr": "서울 영등포구 국회대로68길 24 더코노셔 레지던스", "phone": "02-785-2999", "url": "https://theconnoisseur.co.kr/kor/index.do"},
-        {"name": "호텔 스카이파크 킹스타운 동대문점", "addr": "서울 중구 장충단로13길 20", "phone": "02-6952-8991", "url": "https://www.skyparkhotel.com/html/main.asp?tripla_booking_widget_open="}
-    ],
-    "제주도": [
-        {"name": "라마다 제주시티홀", "addr": "제주특별자치도 제주시 중앙로 304", "phone": "064-759-8831", "url": "http://ramadajejucity.com/index.php"},
-        {"name": "탐라스테이 호텔", "addr": "제주특별자치도 제주시 애월읍 애월해안로 881", "phone": "064-742-8848", "url": "https://map.kakao.com/?nil_profile=title&nil_src=local"},
-        {"name": "호텔 휘슬락 제주", "addr": "제주특별자치도 제주시 서부두2길 26", "phone": "064-795-7000", "url": "http://www.whistlelark.co.kr/"},
-        {"name": "라마다제주함덕호텔", "addr": "제주특별자치도 제주시 조천읍 신북로 470", "phone": "064-793-5500", "url": "http://jejuhdramada.com/index.php"},
-        {"name": "호텔 샬롬", "addr": "제주특별자치도 제주시 동광로 34", "phone": "064-720-7700", "url": "https://hotelshalom.co.kr/"},
-        {"name": "함덕비치스테이제주", "addr": "제주특별자치도 제주시 조천읍 조함해안로 474", "phone": "064-782-5660", "url": "https://www.hamdeokbeachstayjeju.com/homepage/KOR/index/index"},
-        {"name": "메종 글래드 제주", "addr": "제주특별자치도 제주시 노연로 80", "phone": "064-747-5000", "url": "https://www.glad-hotels.com/maisongladjeju/index.do"},
-        {"name": "호텔 리젠트 마린 제주", "addr": "제주특별자치도 제주시 서부두2길 20", "phone": "064-717-5000", "url": "https://www.hotelrmblue.com/"},
-        {"name": "글로스터 호텔 제주", "addr": "제주특별자치도 제주시 삼무로 57", "phone": "064-747-1100", "url": "http://www.gloucesterhotel.co.kr/"},
-        {"name": "아스타 호텔", "addr": "제주특별자치도 제주시 서사로 129", "phone": "064-710-1100", "url": "http://www.hotelastar.com/"}
-    ],
-    "부산": [
-        {"name": "시그니엘 부산", "addr": "부산 해운대구 달맞이길 30", "phone": "051-922-1000", "url": "https://www.lottehotel.com/busan-signiel/ko"},
-        {"name": "그랜드 조선 부산", "addr": "부산 해운대구 해운대해변로 292", "phone": "051-922-5000", "url": "https://gjb.josunhotel.com"},
-        {"name": "파라다이스 호텔 부산", "addr": "부산 해운대구 해운대해변로 296", "phone": "051-742-2121", "url": "https://www.busanparadisehotel.co.kr/front"},
-        {"name": "젬스테이", "addr": "부산 부산진구 중앙대로 752 서면역트루엘센트럴 2-20층", "phone": "0502-5551-7726", "url": "https://blog.naver.com/vsamov"},
-        {"name": "더반호텔", "addr": "부산 해운대구 해운대해변로197번길 10-18", "phone": "0507-1376-3310", "url": "http://www.thevanhotelhaeundae.co.kr/homepage/KOR/index/index"},
-        {"name": "센텀 프리미어 호텔", "addr": "부산 해운대구 센텀1로 17 센텀프리미어호텔", "phone": "051-755-9000", "url": "https://centumpremier.net/"},
-        {"name": "토요코인 부산 해운대 2호점", "addr": "부산 해운대구 해운대해변로237번길 5", "phone": "051-741-1045", "url": "http://www.toyoko-inn.kr"},
-        {"name": "라마다 앙코르 바이 원덤 부산 해운대", "addr": "부산 해운대구 구남로 9 라마다앙코르 바이 윈덤 부산 해운대", "phone": "0507-1433-3005", "url": "http://www.ramadaencorehaeundae.com/"},
-        {"name": "신라스테이 부산 해운대", "addr": "부산 해운대구 해운대로570번길 46", "phone": "051-912-9000", "url": "https://www.shillastay.com/haeundae/index.do"},
-        {"name": "웨스틴 조선 부산", "addr": "부산 해운대구 동백로 67", "phone": "051-749-7000", "url": "https://www.josunhotel.com/hotel/westinBusan.do"}
-    ]
+  "서울": [
+    {
+      "name": "코리아나호텔",
+      "addr": "서울시 중구 세종대로 135 (태평로1가)",
+      "phone": "02-2171-7842,7845～6",
+      "url": "https://www.koreanahotel.com/",
+      "img": "/assets/image/서울/숙소/서울_숙소_코리아나호텔.jpg"
+    },
+    {
+      "name": "JK블라썸호텔",
+      "addr": "서울특별시 강서구 양천로 65길 41-22",
+      "phone": "02-2138-0051",
+      "url": "http://www.jkblossom.co.kr/",
+      "img": "/assets/image/서울/숙소/서울숙소JK블라썸호텔.jpg"
+    },
+    {
+      "name": "페어필드 바이 메리어트 서울",
+      "addr": "서울 영등포구 경인로 870",
+      "phone": "02-2108-9000",
+      "url": "https://www.marriott.com/en-us/hotels/selfi-fairfield-seoul/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0",
+      "img": "/assets/image/서울/숙소/서울_숙소_페어필드 바이 메리어트 서울.jpg"
+    },
+    {
+      "name": "롯데시티호텔 구로",
+      "addr": "서울특별시 중구 을지로 30",
+      "phone": "+02-771-1000",
+      "url": "https://www.lottehotel.com/guro-city/ko",
+      "img": "/assets/image/서울/숙소/서울_숙소_롯데시티호텔 구로.jpg"
+    },
+    {
+      "name": "나인트리 바이 파르나스 서울 인사동",
+      "addr": "서울특별시 종로구 인사동길 49",
+      "phone": "02-6917-3099",
+      "url": "https://www.ninetreehotels.com/nth3/",
+      "img": "/assets/image/서울/숙소/서울_숙소_나인트리 바이 파르나스 서울 인사동.jpg"
+    },
+    {
+      "name": "라마다 서울 신도림 호텔",
+      "addr": "서울 구로구 신도림동 427-3",
+      "phone": "02-2162-2000",
+      "url": "https://www.wyndhamhotels.com/ko-kr/ramada/seoul-south-korea/ramada-seoul-sindorim-hotel/overview?brand_id=RA&checkInDate=7/9/2025&checkOutDate=7/10/2025&useWRPoints=false&children=0&adults=1&rooms=1&loc=ChIJg2mkkP6jfDURG-CKQsLK7uA&sessionId=1752029489",
+      "img": "/assets/image/서울/숙소/서울_숙소_라마다 서울 신도림 호텔.jpg"
+    },
+    {
+      "name": "이비스 스타일 앰배서더 서울 용산",
+      "addr": "서울 용산구 청파로20길 95",
+      "phone": "02-2223-7713",
+      "url": "https://www.seouldragoncity.com/web/kr/",
+      "img": "/assets/image/서울/숙소/서울_숙소_이비스 스타일 앰배서더 서울 용산.jpg"
+    },
+    {
+      "name": "베르누이 호텔",
+      "addr": "서울 구로구 경인로 229",
+      "phone": "0507-1496-9001",
+      "url": "https://www.bernoui.com/",
+      "img": "/assets/image/서울/숙소/서울_숙소_베르누이 호텔.jpg"
+    },
+    {
+      "name": "더코노셔 레지던스",
+      "addr": "서울 영등포구 국회대로68길 24 더코노셔 레지던스",
+      "phone": "02-785-2999",
+      "url": "https://theconnoisseur.co.kr/kor/index.do",
+      "img": "/assets/image/서울/숙소/서울_숙소_더코노셔 레지던스.jpg"
+    },
+    {
+      "name": "호텔 스카이파크 킹스타운 동대문점",
+      "addr": "서울 중구 장충단로13길 20",
+      "phone": "02-6952-8991",
+      "url": "https://www.skyparkhotel.com/html/main.asp?tripla_booking_widget_open=",
+      "img": "/assets/image/서울/숙소/서울_숙소_호텔 스카이파크 킹스타운 동대문점.jpg"
+    }
+  ],
+  "제주도": [
+    {
+      "name": "라마다 제주시티홀",
+      "addr": "제주특별자치도 제주시 중앙로 304",
+      "phone": "064-759-8831",
+      "url": "http://ramadajejucity.com/index.php",
+      "img": "/assets/image/제주/숙소/라마다 제주시티홀.jpg"
+    },
+    {
+      "name": "탐라스테이 호텔",
+      "addr": "제주특별자치도 제주시 애월읍 애월해안로 881",
+      "phone": "064-742-8848",
+      "url": "https://map.kakao.com/?nil_profile=title&nil_src=local",
+      "img": "/assets/image/제주/숙소/탐라스테이 호텔.jpg"
+    },
+    {
+      "name": "호텔 휘슬락 제주",
+      "addr": "제주특별자치도 제주시 서부두2길 26",
+      "phone": "064-795-7000",
+      "url": "http://www.whistlelark.co.kr/",
+      "img": "/assets/image/제주/숙소/호텔 휘슬락 제주.jpg"
+    },
+    {
+      "name": "라마다제주함덕호텔",
+      "addr": "제주특별자치도 제주시 조천읍 신북로 470",
+      "phone": "064-793-5500",
+      "url": "http://jejuhdramada.com/index.php",
+      "img": "/assets/image/제주/숙소/라마다제주함덕호텔.jpg"
+    },
+    {
+      "name": "호텔 샬롬",
+      "addr": "제주특별자치도 제주시 동광로 34",
+      "phone": "064-720-7700",
+      "url": "https://hotelshalom.co.kr/",
+      "img": "/assets/image/제주/숙소/호텔 샬롬.jpg"
+    },
+    {
+      "name": "함덕비치스테이제주",
+      "addr": "제주특별자치도 제주시 조천읍 조함해안로 474",
+      "phone": "064-782-5660",
+      "url": "https://www.hamdeokbeachstayjeju.com/homepage/KOR/index/index",
+      "img": "/assets/image/제주/숙소/함덕비치스테이제주.jpg"
+    },
+    {
+      "name": "메종 글래드 제주",
+      "addr": "제주특별자치도 제주시 노연로 80",
+      "phone": "064-747-5000",
+      "url": "https://www.glad-hotels.com/maisongladjeju/index.do",
+      "img": "/assets/image/제주/숙소/메종 글래드 제주.jpg"
+    },
+    {
+      "name": "호텔 리젠트 마린 제주",
+      "addr": "제주특별자치도 제주시 서부두2길 20",
+      "phone": "064-717-5000",
+      "url": "https://www.hotelrmblue.com/",
+      "img": "/assets/image/제주/숙소/호텔 리젠트 마린 제주.jpg"
+    },
+    {
+      "name": "글로스터 호텔 제주",
+      "addr": "제주특별자치도 제주시 삼무로 57",
+      "phone": "064-747-1100",
+      "url": "http://www.gloucesterhotel.co.kr/",
+      "img": "/assets/image/제주/숙소/글로스터 호텔 제주.jpg"
+    },
+    {
+      "name": "아스타 호텔",
+      "addr": "제주특별자치도 제주시 서사로 129",
+      "phone": "064-710-1100",
+      "url": "http://www.hotelastar.com/",
+      "img": "/assets/image/제주/숙소/아스타 호텔.jpg"
+    }
+  ],
+  "부산": [
+    {
+      "name": "시그니엘 부산",
+      "addr": "부산 해운대구 달맞이길 30",
+      "phone": "051-922-1000",
+      "url": "https://www.lottehotel.com/busan-signiel/ko",
+      "img": "/assets/image/부산/숙소/시그니엘 부산.png"
+    },
+    {
+      "name": "그랜드 조선 부산",
+      "addr": "부산 해운대구 해운대해변로 292",
+      "phone": "051-922-5000",
+      "url": "https://gjb.josunhotel.com",
+      "img": "/assets/image/부산/숙소/그랜드 조선 부산.jpg"
+    },
+    {
+      "name": "파라다이스 호텔 부산",
+      "addr": "부산 해운대구 해운대해변로 296",
+      "phone": "051-742-2121",
+      "url": "https://www.busanparadisehotel.co.kr/front",
+      "img": "/assets/image/부산/숙소/파라다이스 호텔 부산.jpg"
+    },
+    {
+      "name": "젬스테이",
+      "addr": "부산 부산진구 중앙대로 752 서면역트루엘센트럴 2-20층",
+      "phone": "0502-5551-7726",
+      "url": "https://blog.naver.com/vsamov",
+      "img": "/assets/image/부산/숙소/젬스테이.jpg"
+    },
+    {
+      "name": "더반호텔",
+      "addr": "부산 해운대구 해운대해변로197번길 10-18",
+      "phone": "0507-1376-3310",
+      "url": "http://www.thevanhotelhaeundae.co.kr/homepage/KOR/index/index",
+      "img": "/assets/image/부산/숙소/더반호텔.jpg"
+    },
+    {
+      "name": "센텀 프리미어 호텔",
+      "addr": "부산 해운대구 센텀1로 17 센텀프리미어호텔",
+      "phone": "051-755-9000",
+      "url": "https://centumpremier.net/",
+      "img": "/assets/image/부산/숙소/센텀 프리미어 호텔.jpg"
+    },
+    {
+      "name": "토요코인 부산 해운대 2호점",
+      "addr": "부산 해운대구 해운대해변로237번길 5",
+      "phone": "051-741-1045",
+      "url": "http://www.toyoko-inn.kr",
+      "img": "/assets/image/부산/숙소/토요코인 부산 해운대 2호점.jpg"
+    },
+    {
+      "name": "라마다 앙코르 바이 원덤 부산 해운대",
+      "addr": "부산 해운대구 구남로 9 라마다앙코르 바이 윈덤 부산 해운대",
+      "phone": "0507-1433-3005",
+      "url": "http://www.ramadaencorehaeundae.com/",
+      "img": "/assets/image/부산/숙소/라마다 앙코르 바이 윈덤 부산 해운대.jpg"
+    },
+    {
+      "name": "신라스테이 부산 해운대",
+      "addr": "부산 해운대구 해운대로570번길 46",
+      "phone": "051-912-9000",
+      "url": "https://www.shillastay.com/haeundae/index.do",
+      "img": "/assets/image/부산/숙소/신라스테이 부산 해운대.jpg"
+    },
+    {
+      "name": "웨스틴 조선 부산",
+      "addr": "부산 해운대구 동백로 67",
+      "phone": "051-749-7000",
+      "url": "https://www.josunhotel.com/hotel/westinBusan.do",
+      "img": "/assets/image/부산/숙소/웨스틴 조선 부산.jpg"
+    }
+  ]
 }
