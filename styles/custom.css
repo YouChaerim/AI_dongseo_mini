@@ -66,3 +66,11 @@ body,
   background: #fcfcfcf7;
   max-width: 700px;
 }
+#gu_btn_row {
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  gap: 12px;
+  scrollbar-width: thin;
+  justify-content: flex-start;
+}
+

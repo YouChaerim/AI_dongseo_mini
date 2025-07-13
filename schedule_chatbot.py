@@ -1,157 +1,112 @@
-import gradio as gr
-import json
-import random
+import os  # 운영체제 환경변수 등을 다루기 위한 라이브러리
+from openai import OpenAI  # OpenAI GPT API 사용
+import json  # JSON 데이터 다루기 위한 표준 라이브러리
+import requests  # HTTP 요청용 라이브러리
+from dotenv import load_dotenv  # .env 파일에서 API 키 불러오기
 
-REGIONS = ["서울", "부산", "제주"]
-MBTIS = ["J", "P"]
+# 환경변수(.env) 파일 불러오기
+load_dotenv()
 
-# 일정 데이터 로드 함수
-def load_schedule(mbti, region):
-    filename = f"assets/schedule_{mbti.lower()}.json"
-    with open(filename, encoding="utf-8") as f:
-        schedules = json.load(f)
-    return schedules[region]
+# API 키 읽어오기
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# 딸깍투 시나리오 메시지
-START_MSG = "안녕하세요! 저는 MBTI P형과 J형 계획을 짜주는 일을 하는 딸깍이 동생 딸깍투에요~!"
-REGION_MSG = "부산, 제주, 서울 중 하나를 골라서 말해주세요! :)"
-MBTI_MSG = "다음은 J형인지 P형인지 알려주세요~!"
+# OpenAI API 클라이언트 생성
+client = OpenAI(api_key=OPENAI_API_KEY)
 
-J_MSG = """J형이시군요.!! 아주 계획적이시네요~ 저도 계획적인 사람 좋아해요.!
-지금부터 딸깍투가 일정을 바로 만들어 드릴게요! :)
-(예상치 못한 날씨와 식사 장소 예매 오류를 예상하여 안정적인 여행을 위해 휴식 시간과 예비 플랜도 포함할게요!)"""
-P_MSG = """P형이시군요.!! 역시 여행은 즉흥적이게 가야 재밌죠~ 
-성향에 맞게 가게, 카페, 장소는 마음에 드시는 걸로 선택해서 갈 수 있게 3가지~5가지로 만들어 드릴게요! :)"""
+# 챗봇 첫 메시지
+START_MSG = "안녕하세요! 여행 일정 추천 및 요약 챗봇입니다.\n\n먼저 여행지부터 알려주세요!"
 
-END_MSG = """완성된 일정표는 마음에 드셨나요?? 딸깍투가 엄청 노력해서 만들었어요!
-한 번 봐보시고 마음에 안드시면 '다시 만들어줘'라고 말해주세요. 그러면 다시 만들어 드릴게요! :)
-제가 만들어드린 일정은 마음에 드셨는지 모르겠지만, 즐거운 여행되시고 행복한 하루 되시길 바랄게요! :)"""
+# 📄 GPT에 전달할 프롬프트(지침) 파일 읽기
+with open("assets/schedule_prompt.txt", "r", encoding="utf-8") as f:
+    content = f.read()
+    # 일정 추천용 프롬프트 부분 추출
+    schedule_prompt = content.split("### SCHEDULE_PROMPT_START")[1].split("### SCHEDULE_PROMPT_END")[0].strip()
+    # 일정 요약용 프롬프트 부분 추출
+    summary_prompt = content.split("### SUMMARY_PROMPT_START")[1].split("### SUMMARY_PROMPT_END")[0].strip()
 
-def pretty_j_schedule(schedule):
-    # J형: 일자별 표 출력
+# Google Translate API를 사용하여 언어 감지
+def detect_language(text):
+    url = "https://translation.googleapis.com/language/translate/v2/detect"
+    params = {'q': text, 'key': GOOGLE_API_KEY}
+    response = requests.post(url, data=params).json()
+    return response['data']['detections'][0][0]['language']
+
+# Google Translate API를 사용하여 번역
+def translate(text, source, target):
+    if source == target:
+        return text
+    url = "https://translation.googleapis.com/language/translate/v2"
+    params = {'q': text, 'source': source, 'target': target, 'format': 'text', 'key': GOOGLE_API_KEY}
+    response = requests.post(url, data=params).json()
+    return response['data']['translations'][0]['translatedText']
+
+# OpenAI GPT API 호출 함수
+def ask_gpt(system_prompt, messages):
+    res = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "system", "content": system_prompt}] + messages
+    )
+    return res.choices[0].message.content.strip()
+
+# GPT가 반환한 JSON 일정 데이터를 HTML 표로 변환
+def json_to_html_table(data):
     html = ""
-    for day in [d for d in schedule if "일차" in d]:
-        html += f"<h4>🗓️ {day}</h4><table border=1 style='width:100%;border-radius:8px;overflow:hidden;font-size:15px;margin-bottom:16px;'><tr><th>시간</th><th>장소</th><th>활동</th><th>체크리스트</th></tr>"
-        for s in schedule[day]:
-            html += f"<tr><td>{s['시간']}</td><td>{s['장소']}</td><td>{s['활동']}</td><td>{s['체크리스트']}</td></tr>"
-        html += "</table>"
-    # 예비계획
-    html += "<h4>📌 예비 플랜</h4><table border=1 style='width:100%;border-radius:8px;overflow:hidden;font-size:15px;'><tr><th>상황</th><th>대체</th><th>설명</th><th>체크리스트</th></tr>"
-    for e in schedule["예비계획"]:
-        html += f"<tr><td>{e['상황']}</td><td>{e['대체']}</td><td>{e['설명']}</td><td>{e['체크리스트']}</td></tr>"
-    html += "</table>"
+    for day in data:
+        html += f"<h4>{day['date']} - {day['region']} (MBTI: {day['mbti']})</h4>"
+        html += "<table border='1' style='border-collapse: collapse;'>"
+        html += "<tr><th>시간</th><th>활동</th></tr>"
+        for item in day["schedule"]:
+            html += f"<tr><td>{item['time']}</td><td>{item['activity']}</td></tr>"
+        html += "</table><br/>"
     return html
 
-def pretty_p_schedule(schedule):
-    # P형: 시간대별 옵션/장소/식사 표
-    html = ""
-    for part in ["아침", "점심", "오후카페", "저녁", "마무리카페"]:
-        data = schedule[part]
-        html += f"<h4>🕗 {part}</h4><ul>"
-        for item in data["일정"]:
-            html += f"<li>{item['option']} → <b>{item['place']}</b></li>"
-        html += "</ul><b>추천 식사/카페</b><ul>"
-        k = "식사" if "식사" in data else "카페"
-        for food in data[k]:
-            html += f"<li>{food['place']} ({food['phone']})</li>"
-        html += "</ul>"
-    return html
+# ✨ 메인 챗봇 함수: 일정 추천 또는 요약 처리
+def schedule_chatbot_fn(txt_val, chat_val, state_val):
+    lang = detect_language(txt_val)  # 입력 언어 감지
+    input_for_gpt = txt_val
 
-# 챗봇 동작 로직 (상태 기반)
-def schedule_chatbot_fn(msg, history, state):
-    history = history or []
-    state = state or {"step": 0}
+    # 영어/일본어 입력이면 → 한국어로 번역 후 GPT 호출
+    if lang in ["en", "ja"]:
+        input_for_gpt = translate(txt_val, lang, "ko")
 
-    # 첫 시작
-    # if state["step"] == 0:
-    #     history.append({"role": "assistant", "content": START_MSG})
-    #     history.append({"role": "assistant", "content": REGION_MSG})
-    #     state["step"] = 1
-    #     return "", history, state
+    # 기존 대화 기록 + 현재 입력 추가
+    messages = chat_val.copy() if chat_val else []
+    messages.append({"role": "user", "content": input_for_gpt})
 
-    # 지역 입력받기
-    if state["step"] == 1:
-        region = None
-        msg_clean = msg.replace(" ", "")
-        for r in REGIONS:
-            if r in msg_clean:
-                region = r
-        if not region:
-            history.append({"role": "assistant", "content": "다시 한 번 부산, 제주, 서울 중 하나를 입력해주세요!"})
-            return "", history, state
-        state["region"] = region
-        history.append({"role": "user", "content": msg})
-        history.append({"role": "assistant", "content": MBTI_MSG})
-        state["step"] = 2
-        return "", history, state
+    # "요약해줘" 요청이면 → 요약 모드
+    if "요약해줘" in input_for_gpt:
+        summary_prompt_md = summary_prompt + "\n\n⭐ 출력은 Markdown 스타일로 작성하세요."
+        gpt_response = ask_gpt(summary_prompt_md, messages)
 
-    # MBTI 입력받기
-    if state["step"] == 2:
-        mbti = None
-        msg_upper = msg.upper()
-        if "J" in msg_upper:
-            mbti = "J"
-            history.append({"role": "user", "content": msg})
-            history.append({"role": "assistant", "content": J_MSG})
-        elif "P" in msg_upper:
-            mbti = "P"
-            history.append({"role": "user", "content": msg})
-            history.append({"role": "assistant", "content": P_MSG})
-        else:
-            history.append({"role": "assistant", "content": "J 또는 P 중에 선택해서 입력해주세요!"})
-            return "", history, state
-        state["mbti"] = mbti
-        # (여기서 바로 일정 제공!!)
-        region, mbti = state["region"], state["mbti"]
-        sched = load_schedule(mbti, region)
-        if mbti == "J":
-            html = pretty_j_schedule(sched)
-        else:
-            html = pretty_p_schedule(sched)
-        history.append({"role": "assistant", "content": html})
-        history.append({"role": "assistant", "content": END_MSG})
-        state["step"] = 4  # 바로 "다시 만들어줘" 대기 단계로 이동
-        return "", history, state
+        # 영어/일본어 사용자면 → 결과 다시 번역
+        if lang in ["en", "ja"]:
+            gpt_response = translate(gpt_response, "ko", lang)
 
-    # 일정 제공
-    if state["step"] == 3:
-        region, mbti = state["region"], state["mbti"]
-        sched = load_schedule(mbti, region)
-        if mbti == "J":
-            html = pretty_j_schedule(sched)
-        else:
-            html = pretty_p_schedule(sched)
-        history.append({"role": "assistant", "content": html})
-        history.append({"role": "assistant", "content": END_MSG})
-        state["step"] = 4
-        return "", history, state
+        chat_val.append({"role": "user", "content": txt_val})
+        chat_val.append({"role": "assistant", "content": gpt_response})
 
-    # 다시 만들기 요청
-    if state["step"] == 4:
-        if "다시" in msg:
-            state["step"] = 3
-            history.append({"role": "user", "content": msg})
-            return schedule_chatbot_fn("", history, state)
-        history.append({"role": "assistant", "content": "추가로 궁금하신 점이 있다면 말씀해주세요! :)"})
-        return "", history, state
+        return "", chat_val, state_val
 
-    return "", history, state
+    else:
+        # 일정 추천 모드
+        gpt_response = ask_gpt(schedule_prompt, messages)
 
-# Gradio Blocks (이전 코드에 이 부분만 붙이면 됩니다)
-def run_schedule_chatbot():
-    with gr.Blocks(theme=gr.themes.Soft()) as demo:
-        gr.Markdown("## 📅 딸깍투 맞춤 여행 일정 챗봇")
-        chatbot = gr.Chatbot(show_label=False)
-        state = gr.State(value={"step": 0})
-        with gr.Row():
-            txt = gr.Textbox(placeholder="입력하세요...", show_label=False, scale=4)
-            btn = gr.Button("전송", scale=1)
-        btn.click(schedule_chatbot_fn, [txt, chatbot, state], [txt, chatbot, state])
-        txt.submit(schedule_chatbot_fn, [txt, chatbot, state], [txt, chatbot, state])
+        # 영어/일본어 사용자면 → 결과 다시 번역
+        if lang in ["en", "ja"]:
+            gpt_response = translate(gpt_response, "ko", lang)
 
-    return demo
+        try:
+            # GPT 응답에서 JSON 형식 부분 추출
+            json_start = gpt_response.find("[")
+            json_str = gpt_response[json_start:]
+            schedule_data = json.loads(json_str)  # JSON 파싱
+            html_table = json_to_html_table(schedule_data)  # HTML 표로 변환
+            gpt_response = html_table
+        except Exception as e:
+            pass  # 파싱 실패 시 GPT 응답 그대로 사용
 
-# 기존 페이지에 아래처럼 추가:
-# (예시: 일정 버튼 클릭 시 run_schedule_chatbot().launch() 실행)
-if __name__ == "__main__":
-    run_schedule_chatbot().launch()
+        chat_val.append({"role": "user", "content": txt_val})
+        chat_val.append({"role": "assistant", "content": gpt_response})
+
+        return "", chat_val, state_val
